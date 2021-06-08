@@ -1,16 +1,17 @@
 ifneq ($(TARGET_BOARD_AUTO),true)
 ifneq ($(TARGET_BOARD_PLATFORM),qssi)
 
-RMNET_OFFLOAD_DLKM_PLATFORMS_LIST := lahaina
-RMNET_OFFLOAD_DLKM_PLATFORMS_LIST += taro
+RMNET_PERF_TETHER_DLKM_PLATFORMS_LIST := lahaina
+RMNET_PERF_TETHER_DLKM_PLATFORMS_LIST += taro
 
-ifeq ($(call is-board-platform-in-list, $(RMNET_OFFLOAD_DLKM_PLATFORMS_LIST)),true)
+ifeq ($(call is-board-platform-in-list, $(RMNET_PERF_TETHER_DLKM_PLATFORMS_LIST)),true)
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_PATH := $(KERNEL_MODULES_OUT)
-LOCAL_MODULE := rmnet_offload.ko
-LOCAL_SRC_FILES   := $(wildcard $(LOCAL_PATH)/**/*) $(wildcard $(LOCAL_PATH)/*)
+
+LOCAL_MODULE := rmnet_perf_tether.ko
+LOCAL_SRC_FILES := $(wildcard $(LOCAL_PATH)/**/*) $(wildcard $(LOCAL_PATH)/*)
 
 #path from build top to the core directory
 DATARMNET_CORE_PATH := datarmnet/core
